@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option go_package = "common";
+
+message ErrorResponse {
+    Error error = 1;
+}
+
+message Error {
+    int32 code = 1;
+    string status = 2;
+    repeated ErrorDetail details = 3;
+    string message = 4;
+}
+
+message ErrorDetail {
+    repeated string fields = 1;
+    string message = 2;
+}

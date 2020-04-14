@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option go_package = "common";
+
+message Int64 {
+    int64 value = 1;
+}

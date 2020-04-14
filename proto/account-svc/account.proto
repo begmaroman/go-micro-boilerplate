@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+package accountproto;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "github.com/begmaroman/go-micro-boilerplate/proto/health/health.proto";
+import "github.com/begmaroman/go-micro-boilerplate/proto/status/status.proto";
+
+service AccountService {
+    rpc Health(google.protobuf.Empty) returns (health.HealthResponse) {}
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+
+    // User CRUD operations
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+    rpc ReadUser(ReadUserRequest) returns (ReadUserResponse) {}
+    rpc ListUsers(ListUsersRequest) returns (ListUsersResponse) {}
+    rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
+    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
+}
+
+// CreateUser operation
+message CreateUserRequest {
+    User user = 1;
+}
+
+message CreateUserResponse {
+    oneof result {
+        Status error = 1;
+        User user = 2;
+    }
+}
+
+// ReadUser operation
+message ReadUserRequest {
+    string user_id = 1;
+}
+
+message ReadUserResponse {
+    oneof result {
+        Status error = 1;
+        User user = 2;
+    }
+}
+
+// ListUsers operation
+message ListUsersRequest {}
+
+message ListUsersResponseOK {
+    repeated User users = 1;
+}
+
+message ListUsersResponse {
+    oneof result {
+        Status error = 1;
+        ListUsersResponseOK data = 2;
+    }
+}
+
+// UpdateUserAttributes operation
+message UpdateUserRequest {
+    string user_id = 1;
+    User user = 2;
+}
+
+message UpdateUserResponse {
+    oneof result {
+        Status error = 1;
+        User user = 2;
+    }
+}
+
+// DeleteUser operation
+message DeleteUserRequest {
+    string user_id = 1;
+    string account_id = 2;
+}
+
+message DeleteUserResponse {
+    oneof result {
+        Status error = 1;
+        Status ok = 2;
+    }
+}
+message User {
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    google.protobuf.Timestamp updated_at = 4;
+    google.protobuf.Timestamp created_at = 5;
+}
