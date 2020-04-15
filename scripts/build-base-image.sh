@@ -11,7 +11,7 @@ IMAGE="go-micro-boilerplate-base:1.12-stretch-0"
 
 pushd "$ROOT" > /dev/null
     # Build the base image
-    docker build -f backend/Dockerfile -t "$IMAGE" .
+    docker build -f services/Dockerfile -t "$IMAGE" .
 
     # When it's successfully built, you can push in in your remote registry.
     # Use the command like this: docker push "$IMAGE"

@@ -24,8 +24,8 @@ WORKDIR /go/src/github.com/begmaroman/go-micro-boilerplate/
 ENV GO111MODULE=on
 
 # Copy module files.
-COPY backend/go.mod .
-COPY backend/go.sum .
+COPY go.mod .
+COPY go.sum .
 
 # Download project dependencies.
 RUN go mod download

@@ -1,12 +1,12 @@
 package health
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/micro/go-micro/client/selector"
 	"github.com/micro/go-micro/registry"
-	"golang.org/x/net/context"
 
 	"github.com/begmaroman/go-micro-boilerplate/utils/healthchecker"
 )
