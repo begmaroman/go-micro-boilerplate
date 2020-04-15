@@ -37,7 +37,7 @@ func Init(clientOpts *ClientOptions) (*MicroService, error) {
 		}),
 	)
 
-	// Parse command-line arguments
+	// Parse command-line arguments.
 	svc.Init()
 
 	return New(svc, opts, clientOpts)
@@ -45,12 +45,12 @@ func Init(clientOpts *ClientOptions) (*MicroService, error) {
 
 // New is the constructor of the service.
 func New(svc micro.Service, opts *Options, clientOpts *ClientOptions) (*MicroService, error) {
-	// Validate options
+	// Validate options.
 	if err := opts.Validate(); err != nil {
 		return nil, errors.Wrap(err, "options validation failed")
 	}
 
-	// Create a self-pinger client
+	// Create a self-pinger client.
 	selfPingClient := health.NewSelfPingClient(svc, accountproto.NewAccountService(rpc.AccountServiceName, svc.Client()))
 
 	// Create store layer using in-memory data store.
@@ -59,20 +59,20 @@ func New(svc micro.Service, opts *Options, clientOpts *ClientOptions) (*MicroSer
 		Log: clientOpts.Log,
 	})
 
-	// Create business layer
+	// Create business layer.
 	service := domain.New(&domain.Options{
 		Store: store,
 		Log:   clientOpts.Log,
 	})
 
-	// Create RPC handler
+	// Create RPC handler.
 	handler := accountsvc.NewHandler(&accountsvc.Options{
 		Service:        service,
 		SelfPingClient: selfPingClient,
 		Log:            clientOpts.Log,
 	})
 
-	// Register the service
+	// Register the service.
 	accountproto.RegisterAccountServiceHandler(svc.Server(), handler)
 
 	return &MicroService{
@@ -83,19 +83,19 @@ func New(svc micro.Service, opts *Options, clientOpts *ClientOptions) (*MicroSer
 	}, nil
 }
 
-// Run runs the service
+// Run runs the service.
 func (s *MicroService) Run() error {
 	if s.opts.IsTest {
 		s.log.Info("Running in test mode!")
 	}
 
-	// Run helathcheck endpoint
+	// Run helathcheck endpoint.
 	shutdown := healthchecker.Run(s.log, health.Wrap(s.handler.Health), nil)
 
-	// Stop helathcheck endpoint after RPC service stop
+	// Stop helathcheck endpoint after RPC service stop.
 	s.svc.Init(micro.AfterStop(shutdown))
 
-	// Start service
+	// Start service.
 	if err := s.svc.Run(); err != nil {
 		return errors.Wrap(err, "failed to run")
 	}

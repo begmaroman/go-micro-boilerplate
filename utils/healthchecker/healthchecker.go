@@ -6,6 +6,10 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+const (
+	defaultListenAddr = ":5678"
+)
+
 // Check is the type of the healthcheck function accepted by Run
 type Check func() error
 
@@ -55,11 +59,14 @@ func Run(log logrus.FieldLogger, check Check, opts *Options) (shutdown func() er
 		opts = &Options{}
 	}
 
-	if opts.ListenAddr == "" {
-		opts.ListenAddr = ":5678"
+	if len(opts.ListenAddr) == 0 {
+		opts.ListenAddr = defaultListenAddr
 	}
 
-	server := &http.Server{Addr: opts.ListenAddr, Handler: Handler(check)}
+	server := &http.Server{
+		Addr:    opts.ListenAddr,
+		Handler: Handler(check),
+	}
 
 	go func() {
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {

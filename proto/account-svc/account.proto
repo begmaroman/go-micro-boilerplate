@@ -79,7 +79,7 @@ message DeleteUserRequest {
 message DeleteUserResponse {
     oneof result {
         Status error = 1;
-        Status ok = 2;
+        google.protobuf.Empty empty = 2;
     }
 }
 message User {
