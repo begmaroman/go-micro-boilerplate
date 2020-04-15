@@ -1,6 +1,9 @@
 package main
 
 import (
+	_ "github.com/micro/go-plugins/broker/nats"
+	_ "github.com/micro/go-plugins/registry/nats"
+	_ "github.com/micro/go-plugins/transport/nats"
 	"github.com/sirupsen/logrus"
 
 	"github.com/begmaroman/go-micro-boilerplate/services/account-svc/microservice"
