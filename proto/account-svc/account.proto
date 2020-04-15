@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+option go_package = "github.com/begmaroman/go-micro-boilerplate/proto/account-svc;accountproto";
+
 package accountproto;
 
 import "google/protobuf/empty.proto";

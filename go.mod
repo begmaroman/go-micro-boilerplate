@@ -1,4 +1,4 @@
-module github.com/begmaroman/cvspot/backend
+module github.com/begmaroman/go-micro-boilerplate
 
 go 1.12
 
@@ -7,9 +7,10 @@ replace github.com/golang/lint => github.com/golang/lint v0.0.0-20190227174305-8
 replace git.apache.org/thrift.git => github.com/apache/thrift v0.0.0-20180902110319-2566ecd5d999
 
 require (
-	github.com/begmaroman/go-micro-boilerplate v0.0.0-20200415050321-ffaf3b47b269
 	github.com/coreos/bbolt v1.3.3 // indirect
 	github.com/coreos/go-semver v0.3.0 // indirect
+	github.com/coreos/go-systemd v0.0.0-20190719114852-fd7a80b32e1f // indirect
+	github.com/coreos/pkg v0.0.0-20180928190104-399ea9e2e55f // indirect
 	github.com/gogo/protobuf v1.3.0 // indirect
 	github.com/golang/groupcache v0.0.0-20191002201903-404acd9df4cc // indirect
 	github.com/golang/mock v1.3.1 // indirect
@@ -34,7 +35,7 @@ require (
 	go.etcd.io/bbolt v1.3.3 // indirect
 	golang.org/x/crypto v0.0.0-20191206172530-e9b2fee46413 // indirect
 	golang.org/x/lint v0.0.0-20191125180803-fdd1cda4f05f // indirect
-	golang.org/x/net v0.0.0-20200324143707-d3edc9973b7e
+	golang.org/x/net v0.0.0-20200324143707-d3edc9973b7e // indirect
 	golang.org/x/sync v0.0.0-20190911185100-cd5d95a43a6e // indirect
 	golang.org/x/tools v0.0.0-20191218040434-6f9e13bbec44 // indirect
 	google.golang.org/genproto v0.0.0-20191108220845-16a3f7862a1a

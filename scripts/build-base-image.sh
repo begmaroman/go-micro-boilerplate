@@ -7,7 +7,7 @@ ROOT="$DIR/.."
 
 # Here we define the image. It is also possible to use the remote image here.
 # If you use AWS container registry, use it here.
-IMAGE="go-micro-boilerplate-base:1.12-stretch-0"
+IMAGE="go-micro-boilerplate-base:1.13-stretch-0"
 
 pushd "$ROOT" > /dev/null
     # Build the base image
