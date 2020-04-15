@@ -18,32 +18,32 @@ services:
       - go-micro-boilerplate-docker
     restart: always
 
-    #--------------------------------------------------------------------------#
-    # SERVICES DEFINITIONS
-    #--------------------------------------------------------------------------#
+  #--------------------------------------------------------------------------#
+  # SERVICES DEFINITIONS
+  #--------------------------------------------------------------------------#
 
-    # account-svc configures account-svc to run it locally.
-    account-svc:
-      build:
-        context: .
-        dockerfile: ./services/account-svc/Dockerfile
-      depends_on:
-        - nats
-      environment:
-        # This is the indicator that the service is running locally.
-        DOCKER_COMPOSE: "true"
-        # Define registry type and its address.
-        MICRO_REGISTRY: nats
-        MICRO_REGISTRY_ADDRESS: nats:4222
-        # Define transport type.
-        MICRO_TRANSPORT: nats
-        MICRO_TRANSPORT_ADDRESS: nats:4222
-        # Define message broker type and its address.
-        MICRO_BROKER: nats
-        MICRO_BROKER_ADDRESS: nats:4222
-      networks:
-        - go-micro-boilerplate-docker
-      restart: always
+  # account-svc configures account-svc to run it locally.
+  account-svc:
+    build:
+      context: .
+      dockerfile: ./services/account-svc/Dockerfile
+    depends_on:
+      - nats
+    environment:
+      # This is the indicator that the service is running locally.
+      DOCKER_COMPOSE: "true"
+      # Define registry type and its address.
+      MICRO_REGISTRY: nats
+      MICRO_REGISTRY_ADDRESS: nats:4222
+      # Define transport type.
+      MICRO_TRANSPORT: nats
+      MICRO_TRANSPORT_ADDRESS: nats:4222
+      # Define message broker type and its address.
+      MICRO_BROKER: nats
+      MICRO_BROKER_ADDRESS: nats:4222
+    networks:
+      - go-micro-boilerplate-docker
+    restart: always
 
 networks:
   go-micro-boilerplate-docker:
