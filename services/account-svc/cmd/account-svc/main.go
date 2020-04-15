@@ -1,6 +1,8 @@
 package main
 
 import (
+	// We need these imports to register NATS broker, registry, and transport.
+	// This type is defined through evars in docker-compose.yaml file.
 	_ "github.com/micro/go-plugins/broker/nats"
 	_ "github.com/micro/go-plugins/registry/nats"
 	_ "github.com/micro/go-plugins/transport/nats"
@@ -9,13 +11,13 @@ import (
 	"github.com/begmaroman/go-micro-boilerplate/services/account-svc/microservice"
 )
 
-// Version is set during build via --ldflags parameter
+// Version may be changed during build via --ldflags parameter
 var Version = "latest"
 
 func main() {
 	logger := logrus.New()
 
-	// Initialize service
+	// Initialize service.
 	microService, err := microservice.Init(&microservice.ClientOptions{
 		Version: Version,
 		Log:     logger,
@@ -24,7 +26,7 @@ func main() {
 		logger.WithError(err).Fatal("failed to initialize micro-service")
 	}
 
-	// Run service
+	// Run service.
 	if err := microService.Run(); err != nil {
 		logger.WithError(err).Fatal("failed to run micro-service")
 	}
