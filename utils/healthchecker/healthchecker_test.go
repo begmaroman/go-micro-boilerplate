@@ -8,7 +8,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/begmaroman/cvspot/backend/utils/healthchecker"
+	"github.com/begmaroman/go-micro-boilerplate/utils/healthchecker"
 )
 
 var (
