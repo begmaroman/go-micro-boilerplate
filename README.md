@@ -17,8 +17,8 @@ Let's create an excellent boilerplate together!*
 This is the example of the project based on [GoLang][go] programming language and 
 micro-services with clear architecture/structure.
 
-You may see as simple project that provides CRUD operations related to the user entity.
-The project written in [GoLang][go] programming language. Microservices architecture is used.
+You may see a simple project that provides CRUD operations related to the user entity.
+The project is written in [GoLang][go] programming language. Microservices architecture is used.
 
 There are two microservices, one web service that exposes REST API, 
 and the second one is the RPC microservice that implements functionality to work with users.
