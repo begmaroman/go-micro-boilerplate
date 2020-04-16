@@ -9,6 +9,9 @@
 
 # Go Micro Boilerplate
 
+*NOTE: If something is not fully clear, feel free to create an issue. 
+Let's create an excellent boilerplate together!*
+
 This is the example with clear architecture/structure of the project based on 
 [GoLang][go] programming language and micro-services.
 
@@ -25,7 +28,7 @@ Check Dockerfiles and docker-compose.yaml file in the root of the project.
 
 Use [Go modules][gomodules] to manage dependencies of the project. 
 
-*NOTE: There are no tests in the project, this is a different story :)*
+*NOTE 1: There are no tests in the project, this is a different story :)*
 
 ### Install [protoc][protoc]
 
