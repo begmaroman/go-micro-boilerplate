@@ -23,6 +23,7 @@ and the second one is the RPC microservice that implements functionality to work
 
 Once a user sends an HTTP request to the web service, it handles the incoming request, prepares data
 and calls the RPC service through RPC request.
+The RPC service handles this request, applies some business logic, and updates the data store.
 
 ### Technologies
 
