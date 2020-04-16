@@ -7,10 +7,10 @@
 [protoc]: https://github.com/google/protobuf/releases
 [swagger]: https://swagger.io/
 
-# Go Micro Boilerplate
-
 *NOTE: If something is not fully clear, feel free to create an issue. 
 Let's create an excellent boilerplate together!*
+
+# Go Micro Boilerplate
 
 This is the example with clear architecture/structure of the project based on 
 [GoLang][go] programming language and micro-services.
