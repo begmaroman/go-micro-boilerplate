@@ -151,8 +151,10 @@ Each of these layers has its own interface that describes the behavior of it.
 ### Structure of web service:
 
 As an example, `rest-api-svc` is described below.
+
 This service provides REST API to users. Requests from users are handled by `rest-api-svc`
 and redirected to other RPC services.
+
 We use [Swagger][swagger] to describe REST API of the project.
 
 
