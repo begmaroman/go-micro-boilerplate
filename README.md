@@ -41,6 +41,20 @@ $ mv include/* /usr/local/include && \
 $ rm -f protoc-*.zip
 ```
 
+### Install other go tools
+
+There are a few other go tools that are needed to develop and build the project.
+Open your terminal and execute the following command:
+```bash
+$ go install \
+    github.com/go-openapi/runtime \
+    github.com/tylerb/graceful \
+    github.com/jessevdk/go-flags \
+    github.com/micro/protoc-gen-micro \
+    github.com/golang/protobuf/protoc-gen-go \
+    github.com/go-swagger/go-swagger/cmd/swagger
+```
+
 ### Structure of the project:
 
 This section describes and explains the files and directories structure of the project. 
