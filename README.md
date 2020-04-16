@@ -14,8 +14,7 @@ Let's create an excellent boilerplate together!*
 
 # Go Micro Boilerplate
 
-This is the example of the project based on [GoLang][go] programming language and 
-micro-services with clear architecture/structure.
+Go Micro Boilerplate is the example of the [GoLang][go] project based on the microservices architecture.
 
 You may see a simple project that provides CRUD operations related to the user entity.
 The project is written in [GoLang][go] programming language. Microservices architecture is used.
