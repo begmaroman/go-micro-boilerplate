@@ -5,6 +5,7 @@
 [dockercompose]: https://docs.docker.com/compose/
 [gomodules]: https://blog.golang.org/using-go-modules
 [protoc]: https://github.com/google/protobuf/releases
+[swagger]: https://swagger.io/
 
 # Go Micro Boilerplate
 
@@ -106,11 +107,22 @@ when we run them using docker-compose (see `docker-compose.yaml`).
  
 This is recommended to describe your project.
 
+## Structure of services
 
-### Structure of a service:
+![go micro](./docs/infra.png)
 
-This section describes and explains the files and directories structure of a service.
+This section describes and explains architecture of microservices both web and RPC.
 All services should be in `./services` directory. Use `<servicename>-svc` format to name services.
+
+There are two microservices in this project:
+
+- `rest-api-svc` is the web service that exposes REST endpoints. 
+    It allows users to perform operations in other services.
+
+- `account-svc` is the RPC microservice that provides some business logic related to users.
+
+
+### Structure of an RPC service:
 
 As an example, `account-svc` is described below.
 
@@ -136,6 +148,14 @@ The most important thing about clean architecture is to make interfaces through 
 Don't build dependencies on implementations, use interfaces instead.
 Each of these layers has its own interface that describes the behavior of it.
 
+### Structure of web service:
+
+As an example, `rest-api-svc` is described below.
+This service provides REST API to users. Requests from users are handled by `rest-api-svc`
+and redirected to other RPC services.
+We use [Swagger][swagger] to describe REST API of the project.
+
+
 ## Inspired by
 
 - [GoLang][go]
@@ -143,3 +163,4 @@ Each of these layers has its own interface that describes the behavior of it.
 - [NATS][nats]
 - [Docker][docker]
 - [docker-compose][dockercompose]
+- [Swagger][swagger]

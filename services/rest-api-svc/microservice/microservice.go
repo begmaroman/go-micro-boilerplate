@@ -51,10 +51,10 @@ func New(svc web.Service, opts *Options, clientOpts *ClientOptions) (*MicroServi
 		return nil, errors.Wrap(err, "options validation failed")
 	}
 
-	// Init dependencies.
+	// Init dependencies. Here we create a client to send RPC requests to account-svc.
 	accountClient := accountproto.NewAccountService(rpc.AccountServiceName, client.DefaultClient)
 
-	// Create handler.
+	// Create handler of REST endpoints.
 	accountHandler := account.NewRestHandler(&account.RestHandlerOptions{
 		AccountService: accountClient,
 		Logger:         clientOpts.Log,
@@ -63,7 +63,7 @@ func New(svc web.Service, opts *Options, clientOpts *ClientOptions) (*MicroServi
 	// Create API.
 	restAPI := restapisvc.NewRestAPI(clientOpts.Log)
 
-	// Create healthcheck handler
+	// Create healthcheck handler. This is needed for LB.
 	restAPI.GetHealthHandler = operations.GetHealthHandlerFunc(func(params operations.GetHealthParams) middleware.Responder {
 		return operations.NewGetHealthOK()
 	})
