@@ -25,6 +25,8 @@ Check Dockerfiles and docker-compose.yaml file in the root of the project.
 
 Use [Go modules][gomodules] to manage dependencies of the project. 
 
+*NOTE: There are no tests in the project, this is a different story :)*
+
 ### Install [protoc][protoc]
 
 Use Protobufs as part of our toolchain so you need to [grab a release][protoc] 
