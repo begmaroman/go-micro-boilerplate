@@ -178,6 +178,7 @@ Each of these layers has its own interface that describes the behavior of it.
 - `store` is the store layer.
 - `microservice` implements functionality to setup and configure your microservice. 
     No business logic inside.
+- `cmd` contains the main package.
 
 ### Structure of web service:
 
@@ -188,6 +189,16 @@ and redirected to other RPC services.
 
 We use [Swagger][swagger] to describe REST API of the project.
 
+- `Dockerfile` is the dockerfile of the service.
+- `entrypoint.sh` is the entrypoint script of the service. 
+    This script can load some external data like secrets, passwords, etc.
+- `handler.go` sets up the swagger API of the service.
+- `swaggergen` contains generated Swagger models.
+- `specs` contains Swagger file that describes REST API of the project.
+- `microservice` implements functionality to setup and configure your microservice. 
+    No business logic inside.
+- `cmd` contains the main package.
+- `account` contains handlers of endpoints that are related to the account logic.
 
 ## Inspired by
 
