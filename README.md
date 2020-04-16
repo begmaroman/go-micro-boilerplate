@@ -27,7 +27,7 @@ Use [Go modules][gomodules] to manage dependencies of the project.
 
 ### Install [protoc][protoc]
 
-Гse Protobufs as part of our toolchain so you need to [grab a release][protoc] 
+Use Protobufs as part of our toolchain so you need to [grab a release][protoc] 
 from upstream before you can create a project. 
 On macOS you can do this with just `brew install protobuf`, if you'd like.
 On Linux try to do the following:
