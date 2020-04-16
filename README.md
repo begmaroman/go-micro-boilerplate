@@ -57,6 +57,21 @@ $ go install \
     github.com/go-swagger/go-swagger/cmd/swagger
 ```
 
+
+### Run locally
+
+To run services locally you have to install [docker-compose][dockercompose]. 
+
+Once it's done, you may use the following command to build and start all services:
+```bash
+$ docker-compose up -d --build
+```
+
+To stop services use:
+```bash
+$ docker-compose stop
+```
+
 ### Structure of the project:
 
 This section describes and explains the files and directories structure of the project. 
