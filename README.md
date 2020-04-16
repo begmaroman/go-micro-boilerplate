@@ -16,11 +16,11 @@ Let's create an excellent boilerplate together!*
 
 Go Micro Boilerplate is the example of the [GoLang][go] project based on the microservices architecture.
 
-You may see a simple project that provides CRUD operations related to the user entity.
-The project is written in [GoLang][go] programming language. Microservices architecture is used.
+This project provides simple functionality to perform CRUD operations related to the user entity.
 
 There are two microservices, one web service that exposes REST API, 
 and the second one is the RPC microservice that implements functionality to work with users.
+
 Once a user sends an HTTP request to the web service, it handles the incoming request, prepares data
 and calls the RPC service through RPC request.
 
