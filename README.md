@@ -25,6 +25,8 @@ and the second one is the RPC microservice that implements functionality to work
 Once a user sends an HTTP request to the web service, it handles the incoming request, prepares data
 and calls the RPC service through RPC request.
 
+### Technologies
+
 [Go Micro][gomicro] framework provides the core requirements for distributed systems development 
 including RPC and Event driven communication.
 Read more about this framework on their official [GitHub page][gomicro].
