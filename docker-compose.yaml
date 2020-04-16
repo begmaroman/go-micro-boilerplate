@@ -54,6 +54,8 @@ services:
     depends_on:
       - nats
       - account-svc
+    ports:
+      - "3004:5678"
     environment:
       # This is the indicator that the service is running locally.
       DOCKER_COMPOSE: "true"
