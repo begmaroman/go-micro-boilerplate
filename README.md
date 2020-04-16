@@ -96,3 +96,23 @@ All services should be in `./services` directory. Use `<servicename>-svc` format
 As an example, `account-svc` is described below.
 
 ![go micro](./docs/layers.png)
+
+There are 3 layers:
+
+- **Transport layer** represents the API of the service. 
+    It can be implemented using HTTP, RPC, WS, etc. 
+    This layer prepares and passes data to pass to the service layer.
+    No business logic inside of this layer.
+
+- **Domain/business layer** represents the business/domain logic of the service. 
+    This layer doesn't care about transport and must not depend on it.
+    All business logic must be implemented in this layer.
+
+- **Store layer** represents the behavior of the data store. 
+    It can be implemented using PostgreSQL, MongoDB, etc. databases, this is the internal implementation.
+    Only store layer knows about the kind of database inside.
+    A data just come from the outside of this layer. No business logic inside of this layer.
+
+The most important thing about clean architecture is to make interfaces through each layer.
+Don't build dependencies on implementations, use interfaces instead.
+Each of these layers has its own interface that describes the behavior of it.
