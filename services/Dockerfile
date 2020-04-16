@@ -36,7 +36,8 @@ RUN go install \
   github.com/tylerb/graceful \
   github.com/jessevdk/go-flags \
   github.com/micro/protoc-gen-micro \
-  github.com/golang/protobuf/protoc-gen-go
+  github.com/golang/protobuf/protoc-gen-go \
+  github.com/go-swagger/go-swagger/cmd/swagger
 
 # Copy the project on build trigger.
 ONBUILD COPY . .

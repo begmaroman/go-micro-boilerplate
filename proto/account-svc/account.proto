@@ -75,7 +75,6 @@ message UpdateUserResponse {
 // DeleteUser operation
 message DeleteUserRequest {
     string user_id = 1;
-    string account_id = 2;
 }
 
 message DeleteUserResponse {

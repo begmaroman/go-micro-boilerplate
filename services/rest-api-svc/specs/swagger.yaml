@@ -1,0 +1,129 @@
+swagger: '2.0'
+
+info:
+  description: Some description about the platform
+  version: 0.0.1
+  title: Some title about platform
+
+basePath: /
+
+schemes:
+  - https
+
+consumes:
+  - application/json
+
+produces:
+  - application/json
+
+paths:
+
+  /health:
+    get:
+      summary: returns OK
+      responses:
+        '200':
+          description: health check successful
+
+  /user:
+    post:
+      summary: 'Creates a new user.'
+      operationId: userCreate
+      parameters:
+      - name: seed
+        in: body
+        description: 'The user input.'
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+    get:
+      summary: 'Returns all users.'
+      operationId: usersList
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UsersList'
+
+  /user/{user_id}:
+    get:
+      summary: 'Returns an existing user by its ID.'
+      operationId: userRead
+      parameters:
+      - name: user_id
+        in: path
+        description: 'The ID of the user to be read.'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+    delete:
+      summary: 'Delete an existing user by its ID.'
+      operationId: userDelete
+      parameters:
+      - name: user_id
+        in: path
+        description: 'The ID of the user to be deleted'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        '204':
+          description: OK
+    put:
+      summary: 'Update an existing user by its ID.'
+      operationId: userUpdate
+      parameters:
+      - name: user_id
+        in: path
+        description: 'The ID of the user to be updated.'
+        required: true
+        type: string
+        format: uuid
+      - name: seed
+        in: body
+        description: 'The updated user input.'
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+
+definitions:
+
+  UsersList:
+    description: 'The list of users.'
+    type: array
+    items:
+      $ref: '#/definitions/User'
+
+  User:
+    description: 'User data.'
+    type: object
+    properties:
+      id:
+        description: 'User identifier.'
+        type: string
+      name:
+        description: 'The name of the user.'
+        type: string
+      updated_at:
+        description: 'The date and time that the user was last updated.'
+        type: string
+        format: date-time
+      created_at:
+        description: 'The date and time that the user was created.'
+        type: string
+        format: date-time

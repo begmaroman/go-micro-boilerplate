@@ -14,7 +14,11 @@ function main() {
     # GENERATING PROCESS
     # =======================================
     pushd "$project"
-      go generate -x ./proto
+        # Generate proto models.
+        go generate -x ./proto
+
+        # Generate rest-api-svc Swagger models
+        go generate -x ./services/rest-api-svc/swaggergen
     popd
 }
 

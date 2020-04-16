@@ -45,6 +45,31 @@ services:
       - go-micro-boilerplate-docker
     restart: always
 
+
+  # rest-api-svc configures rest-api-svc to run it locally.
+  rest-api-svc:
+    build:
+      context: .
+      dockerfile: ./services/rest-api-svc/Dockerfile
+    depends_on:
+      - nats
+      - account-svc
+    environment:
+      # This is the indicator that the service is running locally.
+      DOCKER_COMPOSE: "true"
+      # Define registry type and its address.
+      MICRO_REGISTRY: nats
+      MICRO_REGISTRY_ADDRESS: nats:4222
+      # Define transport type.
+      MICRO_TRANSPORT: nats
+      MICRO_TRANSPORT_ADDRESS: nats:4222
+      # Define message broker type and its address.
+      MICRO_BROKER: nats
+      MICRO_BROKER_ADDRESS: nats:4222
+    networks:
+      - go-micro-boilerplate-docker
+    restart: always
+
 networks:
   go-micro-boilerplate-docker:
     driver: bridge
