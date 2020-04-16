@@ -14,8 +14,16 @@ Let's create an excellent boilerplate together!*
 
 # Go Micro Boilerplate
 
-This is the example with clear architecture/structure of the project based on 
-[GoLang][go] programming language and micro-services.
+This is the example of the project based on [GoLang][go] programming language and 
+micro-services with clear architecture/structure.
+
+You may see as simple project that provides CRUD operations related to the user entity.
+The project written in [GoLang][go] programming language. Microservices architecture is used.
+
+There are two microservices, one web service that exposes REST API, 
+and the second one is the RPC microservice that implements functionality to work with users.
+Once a user sends an HTTP request to the web service, it handles the incoming request, prepares data
+and calls the RPC service through RPC request.
 
 [Go Micro][gomicro] framework provides the core requirements for distributed systems development 
 including RPC and Event driven communication.
