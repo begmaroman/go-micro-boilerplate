@@ -60,9 +60,15 @@ $ go install \
 
 ### Run locally
 
-To run services locally you have to install [docker-compose][dockercompose]. 
+To run services locally you have to install [docker][docker] and [docker-compose][dockercompose]. 
 
-Once it's done, you may use the following command to build and start all services:
+Once it's done, you have to build the base image:
+```bash
+$ ./scripts/build-base-image.sh
+```
+This is needed to prepare common things for all services to avoid doing the same work multiple times.
+
+Now you have to use the following command to build and start all services:
 ```bash
 $ docker-compose up -d --build
 ```
