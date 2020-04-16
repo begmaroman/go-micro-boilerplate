@@ -40,6 +40,10 @@ Check Dockerfiles and docker-compose.yaml file in the root of the project.
 
 Use [Go modules][gomodules] to manage dependencies of the project. 
 
+[Swagger][swagger] is used to define the REST API of the platform. 
+It's really easy to maintain your REST API logic using this tool. 
+Review it in `rest-api-svc` service.
+
 ### Install [protoc][protoc]
 
 Use Protobufs as part of our toolchain so you need to [grab a release][protoc] 
