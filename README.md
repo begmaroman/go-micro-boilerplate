@@ -68,21 +68,26 @@ Your services use protocol buffer messages as the main communication objects.
 
 #### `./scripts` directory
 
-Contains bash scripts. You may see `generate.sh` scripts there. 
-It's needed to generate GoLang models of proto messages.
-To generate proto files, execute the following command from the root of the project 
+Contains bash scripts. 
+
+You may see `generate.sh` scripts there. This is needed to generate some stuff like 
+GoLang models of proto messages and swagger models.
+To generate these data, execute the following command from the root of the project 
 ```bash
 $ ./scripts/generate.sh .
 ```
-Also, to build the base image for services, you may use `build-base-image.sh` script:
+
+We've prepared docker image as a base image of services.
+To build the base image, you have to execute `build-base-image.sh` script:
 ```bash
 $ ./scripts/build-base-image.sh
 ```
 
 #### `./services` directory
  
-Contains the logic of all of the services.
-Once you wand to create a new service, you may create a new directory with `<service-name>-svc` format.
+Contains all services of the project.
+
+Once you want to create a new service, you may create a new directory with `<service-name>-svc` format.
 Inside of the created directory you can put the logic of your service like it's done with `account-svc`.
  
 #### `./utils` directory
@@ -163,6 +168,16 @@ There are 3 layers:
 The most important thing about clean architecture is to make interfaces through each layer.
 Don't build dependencies on implementations, use interfaces instead.
 Each of these layers has its own interface that describes the behavior of it.
+
+- `Dockerfile` is the dockerfile of the service.
+- `entrypoint.sh` is the entrypoint script of the service. 
+    This script can load some external data like secrets, passwords, etc.
+- `handler.go` implements proto service interface defined in the proto model of a service.
+    This is the transport layer of the service.
+- `domain` contains the business logic.
+- `store` is the store layer.
+- `microservice` implements functionality to setup and configure your microservice. 
+    No business logic inside.
 
 ### Structure of web service:
 
