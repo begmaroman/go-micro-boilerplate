@@ -7,8 +7,10 @@
 [protoc]: https://github.com/google/protobuf/releases
 [swagger]: https://swagger.io/
 
-*NOTE: If something is not fully clear, feel free to create an issue. 
+*NOTE 1: If something is not fully clear, feel free to create an issue. 
 Let's create an excellent boilerplate together!*
+
+*NOTE 2: There are no tests in the project, this is a different story :)*
 
 # Go Micro Boilerplate
 
@@ -27,8 +29,6 @@ All services are [dockerized][docker] and can be adjusted by [docker-compose][do
 Check Dockerfiles and docker-compose.yaml file in the root of the project.
 
 Use [Go modules][gomodules] to manage dependencies of the project. 
-
-*NOTE 1: There are no tests in the project, this is a different story :)*
 
 ### Install [protoc][protoc]
 
