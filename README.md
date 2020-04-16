@@ -1,3 +1,4 @@
+[go]: https://golang.org/doc/install
 [gomicro]: https://github.com/micro/go-micro
 [nats]: https://nats.io/
 [docker]: https://www.docker.com/
@@ -7,7 +8,7 @@
 # Go Micro Boilerplate
 
 This is the example with clear architecture/structure of the project based on 
-GoLang programming language and micro-services.
+[GoLang][go] programming language and micro-services.
 
 [Go Micro][gomicro] framework provides the core requirements for distributed systems development 
 including RPC and Event driven communication.
@@ -75,11 +76,12 @@ Useful commands:
     
 #### `./go.mod` and `./go.sum` files
  
-These are needed to manage dependencies using [go modules][gomodules].
+These files are needed to manage dependencies using [go modules][gomodules].
+When you add/remove dependency from the project, these files gonna be modified.
 
 #### `./.env` file
  
-This contains environment variables that are passing to the services 
+This contains environment variables that pass to services 
 when we run them using docker-compose (see `docker-compose.yaml`).
 
 
@@ -116,3 +118,11 @@ There are 3 layers:
 The most important thing about clean architecture is to make interfaces through each layer.
 Don't build dependencies on implementations, use interfaces instead.
 Each of these layers has its own interface that describes the behavior of it.
+
+## Inspired by
+
+- [GoLang][go]
+- [Go Micro][gomicro]
+- [NATS][nats]
+- [Docker][docker]
+- [docker-compose][dockercompose]
