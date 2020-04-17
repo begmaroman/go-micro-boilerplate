@@ -28,23 +28,3 @@ func Errf(code int32, format string, args ...interface{}) *status.Status {
 		Message: fmt.Sprintf(format, args...),
 	}
 }
-
-// DetailedErr provides the message via Error() and JSON-encoded details via Details()
-type DetailedErr interface {
-	Error() string
-	Details() []byte
-}
-
-// ErrDetailed will populate the Details field of Status if the given error implements DetailedErr
-func ErrDetailed(code int32, err error) *status.Status {
-	s := &status.Status{
-		Code:    code,
-		Message: err.Error(),
-	}
-
-	if derr, ok := err.(DetailedErr); ok {
-		s.Details = derr.Details()
-	}
-
-	return s
-}

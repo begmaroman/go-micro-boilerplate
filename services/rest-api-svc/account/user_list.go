@@ -21,24 +21,16 @@ func (h *RestHandler) usersList(params operations.UsersListParams) middleware.Re
 		// Handle the given error and return 500 status code.
 		// Also, write error message into the response.
 		// Error handling can be with more clear way, but it's just an example.
-		return middleware.ResponderFunc(func(resp http.ResponseWriter, p runtime.Producer) {
-			resp.WriteHeader(http.StatusInternalServerError)
-			if err := p.Produce(resp, err); err != nil {
-				panic(err)
-			}
+		return middleware.ResponderFunc(func(w http.ResponseWriter, _ runtime.Producer) {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
 		})
-	}
-
-	if resp.GetError().GetCode() != 0 {
+	} else if resp.GetError().GetCode() != 0 {
 		// Handle the given logic error and return 400 status code.
 		// Also, write error message into the response.
 		// Error handling can be with more clear way, but it's just an example.
 		// Here gonna be mapping between RPC and HTTP status codes.
 		return middleware.ResponderFunc(func(w http.ResponseWriter, p runtime.Producer) {
-			w.WriteHeader(http.StatusInternalServerError)
-			if err := p.Produce(w, resp.GetError().GetMessage()); err != nil {
-				panic(err)
-			}
+			http.Error(w, resp.GetError().GetMessage(), http.StatusBadRequest)
 		})
 	}
 
