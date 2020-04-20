@@ -177,8 +177,7 @@ func (h *Handler) Health(ctx context.Context, _ *empty.Empty, res *health.Health
 	}
 
 	// Check nats, i.e. call ourselves (exactly this node) via nats
-	err := h.selfPingClient.Ping(ctx)
-	if err != nil {
+	if err := h.selfPingClient.Ping(ctx); err != nil {
 		res.Status = health.HealthResponse_NOT_SERVING
 		return errors.Wrapf(err, "unable to ping ourselves")
 	}

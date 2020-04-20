@@ -90,7 +90,7 @@ func (s *MicroService) Run() error {
 	}
 
 	// Run helathcheck endpoint.
-	shutdown := healthchecker.Run(s.log, health.Wrap(s.handler.Health), nil)
+	shutdown := healthchecker.Run(s.log, healthchecker.WrapRPC(s.handler.Health), nil)
 
 	// Stop helathcheck endpoint after RPC service stop.
 	s.svc.Init(micro.AfterStop(shutdown))
