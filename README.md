@@ -19,11 +19,12 @@ Go Micro Boilerplate is the example of the [GoLang][go] project based on the mic
 This project provides simple functionality to perform CRUD operations related to the user entity.
 
 There are two microservices, one web service that exposes REST API, 
-and the second one is the RPC microservice that implements functionality to work with users.
+and the second one is the RPC microservice that implements functionality to work with users, 
+basically this service is responsible for the business logic. 
 
 Once a user sends an HTTP request to the web service, it handles the incoming request, prepares data
-and calls the RPC service through RPC request.
-The RPC service handles this request, applies some business logic, and updates the data store.
+and calls the RPC service through RPC request using protobuf models.
+The RPC service handles this request, applies some business logic, and updates/reads the data store.
 
 ### Technologies
 
