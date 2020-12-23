@@ -7,7 +7,7 @@ services:
   #  - as the message broker service;
   #  - as the transport method (optional);
   nats:
-    image: nats:2.0.0
+    image: nats:2.1.9
     ports:
       - "4222:4222"
       - "8222:8222"

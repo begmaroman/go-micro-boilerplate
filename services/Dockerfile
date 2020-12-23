@@ -1,6 +1,6 @@
 # This is the base image of the services.
 # In this stage we prepare all required common data to dockerize our services.
-FROM golang:1.13-stretch
+FROM golang:1.15
 
 RUN apt-get update                                                        && \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
@@ -10,7 +10,7 @@ RUN apt-get update                                                        && \
   && rm -rf /var/lib/apt/lists/*
 
 # Install Protobuf.
-ARG PROTOBUF_VERSION=3.3.0
+ARG PROTOBUF_VERSION=3.12.4
 RUN curl -sOL "https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-x86_64.zip" && \
   unzip protoc-*.zip              && \
   mv bin/protoc /usr/local/bin    && \
@@ -35,7 +35,7 @@ RUN go install \
   github.com/go-openapi/runtime \
   github.com/tylerb/graceful \
   github.com/jessevdk/go-flags \
-  github.com/micro/protoc-gen-micro \
+  github.com/micro/protoc-gen-micro/v2 \
   github.com/golang/protobuf/protoc-gen-go \
   github.com/go-swagger/go-swagger/cmd/swagger
 

@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package health;
 
+option go_package = "github.com/begmaroman/go-micro-boilerplate/proto/health";
+
 message HealthResponse {
     enum ServingStatus {
         UNKNOWN = 0;

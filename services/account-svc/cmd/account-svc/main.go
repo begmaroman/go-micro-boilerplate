@@ -3,9 +3,9 @@ package main
 import (
 	// We need these imports to register NATS broker, registry, and transport.
 	// This type is defined through evars in docker-compose.yaml file.
-	_ "github.com/micro/go-plugins/broker/nats"
-	_ "github.com/micro/go-plugins/registry/nats"
-	_ "github.com/micro/go-plugins/transport/nats"
+	_ "github.com/micro/go-plugins/broker/nats/v2"
+	_ "github.com/micro/go-plugins/registry/nats/v2"
+	_ "github.com/micro/go-plugins/transport/nats/v2"
 	"github.com/sirupsen/logrus"
 
 	"github.com/begmaroman/go-micro-boilerplate/services/account-svc/microservice"

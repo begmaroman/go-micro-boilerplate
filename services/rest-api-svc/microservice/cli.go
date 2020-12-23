@@ -1,21 +1,17 @@
 package microservice
 
 import (
-	"github.com/micro/cli"
+	"github.com/micro/cli/v2"
 )
+
+var opts Options
 
 // flags contains the list of configuration parameters.
 var flags = []cli.Flag{
-	cli.BoolFlag{
-		Name:   "docker_compose",
-		EnvVar: "DOCKER_COMPOSE",
-		Usage:  "Set to true if we are running in docker-compose",
+	&cli.BoolFlag{
+		Name:        "docker_compose",
+		EnvVars:     []string{"DOCKER_COMPOSE"},
+		Usage:       "Set to true if we are running in docker-compose",
+		Destination: &opts.IsTest,
 	},
-}
-
-// buildOptions builds the buildOptions based on the cli context.
-func buildOptions(c *cli.Context) *Options {
-	return &Options{
-		IsTest: c.Bool("docker_compose"),
-	}
 }

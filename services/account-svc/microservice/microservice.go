@@ -1,8 +1,7 @@
 package microservice
 
 import (
-	"github.com/micro/cli"
-	"github.com/micro/go-micro"
+	"github.com/micro/go-micro/v2"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 
@@ -19,37 +18,29 @@ import (
 type MicroService struct {
 	svc     micro.Service
 	handler *accountsvc.Handler
-	opts    *Options
 	log     *logrus.Logger
 }
 
 // Init initializes the service.
 func Init(clientOpts *ClientOptions) (*MicroService, error) {
-	var opts *Options
-
 	// Create micro-service.
 	svc := micro.NewService(
 		micro.Name(rpc.AccountServiceName),
 		micro.Version(clientOpts.Version),
 		micro.Flags(flags...),
-		micro.Action(func(c *cli.Context) {
-			opts = buildOptions(c)
+		micro.BeforeStart(func() error {
+			return opts.Validate()
 		}),
 	)
 
 	// Parse command-line arguments.
 	svc.Init()
 
-	return New(svc, opts, clientOpts)
+	return New(svc, clientOpts)
 }
 
 // New is the constructor of the service.
-func New(svc micro.Service, opts *Options, clientOpts *ClientOptions) (*MicroService, error) {
-	// Validate options.
-	if err := opts.Validate(); err != nil {
-		return nil, errors.Wrap(err, "options validation failed")
-	}
-
+func New(svc micro.Service, clientOpts *ClientOptions) (*MicroService, error) {
 	// Create a self-pinger client.
 	selfPingClient := health.NewSelfPingClient(svc, accountproto.NewAccountService(rpc.AccountServiceName, svc.Client()))
 
@@ -73,19 +64,20 @@ func New(svc micro.Service, opts *Options, clientOpts *ClientOptions) (*MicroSer
 	})
 
 	// Register the service.
-	accountproto.RegisterAccountServiceHandler(svc.Server(), handler)
+	if err := accountproto.RegisterAccountServiceHandler(svc.Server(), handler); err != nil {
+		return nil, errors.Wrap(err, "failed to register handler")
+	}
 
 	return &MicroService{
 		svc:     svc,
 		handler: handler,
-		opts:    opts,
 		log:     clientOpts.Log,
 	}, nil
 }
 
 // Run runs the service.
 func (s *MicroService) Run() error {
-	if s.opts.IsTest {
+	if opts.IsTest {
 		s.log.Info("Running in test mode!")
 	}
 

@@ -2,9 +2,8 @@ package microservice
 
 import (
 	"github.com/go-openapi/runtime/middleware"
-	"github.com/micro/cli"
-	"github.com/micro/go-micro/client"
-	"github.com/micro/go-micro/web"
+	"github.com/micro/go-micro/v2/client"
+	"github.com/micro/go-micro/v2/web"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 
@@ -17,22 +16,19 @@ import (
 
 // MicroService is the micro-service.
 type MicroService struct {
-	svc  web.Service
-	opts *Options
-	log  *logrus.Logger
+	svc web.Service
+	log *logrus.Logger
 }
 
 // Init initializes the service.
 func Init(clientOpts *ClientOptions) (*MicroService, error) {
-	var opts *Options
-
 	// Create micro-service.
 	svc := web.NewService(
 		web.Name(rpc.AccountServiceName),
 		web.Version(clientOpts.Version),
 		web.Flags(flags...),
-		web.Action(func(c *cli.Context) {
-			opts = buildOptions(c)
+		web.BeforeStart(func() error {
+			return opts.Validate()
 		}),
 	)
 
@@ -41,16 +37,11 @@ func Init(clientOpts *ClientOptions) (*MicroService, error) {
 		return nil, errors.Wrap(err, "unable to initialize web service")
 	}
 
-	return New(svc, opts, clientOpts)
+	return New(svc, clientOpts)
 }
 
 // New is the constructor of the service.
-func New(svc web.Service, opts *Options, clientOpts *ClientOptions) (*MicroService, error) {
-	// Validate options.
-	if err := opts.Validate(); err != nil {
-		return nil, errors.Wrap(err, "options validation failed")
-	}
-
+func New(svc web.Service, clientOpts *ClientOptions) (*MicroService, error) {
 	// Init dependencies. Here we create a client to send RPC requests to account-svc.
 	accountClient := accountproto.NewAccountService(rpc.AccountServiceName, client.DefaultClient)
 
@@ -80,15 +71,14 @@ func New(svc web.Service, opts *Options, clientOpts *ClientOptions) (*MicroServi
 	}
 
 	return &MicroService{
-		svc:  svc,
-		opts: opts,
-		log:  clientOpts.Log,
+		svc: svc,
+		log: clientOpts.Log,
 	}, nil
 }
 
 // Run runs the service.
 func (s *MicroService) Run() error {
-	if s.opts.IsTest {
+	if opts.IsTest {
 		s.log.Info("Running in test mode!")
 	}
 
