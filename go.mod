@@ -2,6 +2,8 @@ module github.com/begmaroman/go-micro-boilerplate
 
 go 1.15
 
+replace google.golang.org/grpc => google.golang.org/grpc v1.26.0
+
 require (
 	github.com/go-openapi/errors v0.19.8
 	github.com/go-openapi/loads v0.19.6
