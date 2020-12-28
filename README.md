@@ -178,6 +178,11 @@ There are two microservices in this project:
 
 - `rest-api-svc` is the web service that exposes REST endpoints. 
     It allows users to perform operations in other services.
+    You can serve Swagger UI by doing the following:
+    ```bash
+    $ docker-compose up -d cvspot-api-spec  
+    ```
+    And open `localhost:4005` after that command. 
 
 - `account-svc` is the RPC microservice that provides some business logic related to users.
 
