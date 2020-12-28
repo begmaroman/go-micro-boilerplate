@@ -252,3 +252,9 @@ We use [Swagger][swagger] to describe REST API of the project.
 - [Docker][docker]
 - [docker-compose][dockercompose]
 - [Swagger][swagger]
+
+## TODO
+
+- Add a cli tool to generate a simple microservice. It will be in a new repo.
+- Add protected endpoints. 
+- Add example of usage of postgres, and redis.
