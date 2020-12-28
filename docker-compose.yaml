@@ -72,6 +72,16 @@ services:
       - go-micro-boilerplate-docker
     restart: always
 
+
+  cvspot-api-spec:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "4005:8080"
+    environment:
+      SWAGGER_JSON: /spec/swagger.yaml
+    volumes:
+      - ./services/rest-api-svc/specs:/spec
+
 networks:
   go-micro-boilerplate-docker:
     driver: bridge
