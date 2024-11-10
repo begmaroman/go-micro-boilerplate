@@ -6,13 +6,12 @@ import (
 	"context"
 	"fmt"
 	"sync"
-
-	"github.com/pborman/uuid"
-	"github.com/sirupsen/logrus"
-	"google.golang.org/protobuf/types/known/timestamppb"
+	"time"
 
 	accountproto "github.com/begmaroman/go-micro-boilerplate/proto/account-svc"
 	"github.com/begmaroman/go-micro-boilerplate/services/account-svc/store"
+	"github.com/pborman/uuid"
+	"github.com/sirupsen/logrus"
 )
 
 // Options contains the options to create a memory store
@@ -48,7 +47,7 @@ func (m *memory) CreateUser(ctx context.Context, input *accountproto.User) (*acc
 	input.Id = uuid.New()
 
 	// Set timestamps
-	now := timestamppb.Now()
+	now := uint64(time.Now().Unix())
 	input.CreatedAt = now
 	input.UpdatedAt = now
 
@@ -109,7 +108,7 @@ func (m *memory) UpdateUser(ctx context.Context, id string, input *accountproto.
 	}
 
 	// Update user record.
-	input.UpdatedAt = timestamppb.Now()
+	input.UpdatedAt = uint64(time.Now().Unix())
 	m.data[id] = input
 
 	return input, nil

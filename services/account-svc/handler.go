@@ -50,9 +50,7 @@ func (h *Handler) CreateUser(ctx context.Context, req *accountproto.CreateUserRe
 	if err != nil {
 		// Try to convert the given error to the proto status.
 		if resStatus, ok := h.errorAsStatus(ctx, err); ok {
-			resp.Result = &accountproto.CreateUserResponse_Error{
-				Error: resStatus,
-			}
+			resp.Error = resStatus
 			return nil
 		}
 
@@ -61,9 +59,7 @@ func (h *Handler) CreateUser(ctx context.Context, req *accountproto.CreateUserRe
 	}
 
 	// Prepare RPC response data.
-	resp.Result = &accountproto.CreateUserResponse_User{
-		User: createdUser,
-	}
+	resp.User = createdUser
 	return nil
 }
 
@@ -75,9 +71,7 @@ func (h *Handler) ReadUser(ctx context.Context, req *accountproto.ReadUserReques
 	if err != nil {
 		// Try to convert the given error to the proto status.
 		if resStatus, ok := h.errorAsStatus(ctx, err); ok {
-			resp.Result = &accountproto.ReadUserResponse_Error{
-				Error: resStatus,
-			}
+			resp.Error = resStatus
 			return nil
 		}
 
@@ -86,9 +80,7 @@ func (h *Handler) ReadUser(ctx context.Context, req *accountproto.ReadUserReques
 	}
 
 	// Prepare RPC response data.
-	resp.Result = &accountproto.ReadUserResponse_User{
-		User: user,
-	}
+	resp.User = user
 	return nil
 }
 
@@ -100,9 +92,7 @@ func (h *Handler) ListUsers(ctx context.Context, req *accountproto.ListUsersRequ
 	if err != nil {
 		// Try to convert the given error to the proto status.
 		if resStatus, ok := h.errorAsStatus(ctx, err); ok {
-			resp.Result = &accountproto.ListUsersResponse_Error{
-				Error: resStatus,
-			}
+			resp.Error = resStatus
 			return nil
 		}
 
@@ -111,10 +101,8 @@ func (h *Handler) ListUsers(ctx context.Context, req *accountproto.ListUsersRequ
 	}
 
 	// Prepare RPC response data.
-	resp.Result = &accountproto.ListUsersResponse_Data{
-		Data: &accountproto.ListUsersResponseOK{
-			Users: users,
-		},
+	resp.Data = &accountproto.ListUsersResponseOK{
+		Users: users,
 	}
 	return nil
 }
@@ -127,9 +115,7 @@ func (h *Handler) UpdateUser(ctx context.Context, req *accountproto.UpdateUserRe
 	if err != nil {
 		// Try to convert the given error to the proto status.
 		if resStatus, ok := h.errorAsStatus(ctx, err); ok {
-			resp.Result = &accountproto.UpdateUserResponse_Error{
-				Error: resStatus,
-			}
+			resp.Error = resStatus
 			return nil
 		}
 
@@ -138,9 +124,7 @@ func (h *Handler) UpdateUser(ctx context.Context, req *accountproto.UpdateUserRe
 	}
 
 	// Prepare RPC response data.
-	resp.Result = &accountproto.UpdateUserResponse_User{
-		User: user,
-	}
+	resp.User = user
 	return nil
 }
 
@@ -151,9 +135,7 @@ func (h *Handler) DeleteUser(ctx context.Context, req *accountproto.DeleteUserRe
 	if err := h.service.DeleteUser(ctx, req.GetUserId()); err != nil {
 		// Try to convert the given error to the proto status.
 		if resStatus, ok := h.errorAsStatus(ctx, err); ok {
-			resp.Result = &accountproto.DeleteUserResponse_Error{
-				Error: resStatus,
-			}
+			resp.Error = resStatus
 			return nil
 		}
 
@@ -161,10 +143,6 @@ func (h *Handler) DeleteUser(ctx context.Context, req *accountproto.DeleteUserRe
 		return errors.Wrapf(err, "unable to delete user with ID '%s'", req.GetUserId())
 	}
 
-	// Prepare RPC response data.
-	resp.Result = &accountproto.DeleteUserResponse_Empty{
-		Empty: &emptypb.Empty{},
-	}
 	return nil
 }
 

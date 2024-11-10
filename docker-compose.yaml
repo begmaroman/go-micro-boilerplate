@@ -36,8 +36,7 @@ services:
       MICRO_REGISTRY: nats
       MICRO_REGISTRY_ADDRESS: nats:4222
       # Define transport type.
-      MICRO_TRANSPORT: nats
-      MICRO_TRANSPORT_ADDRESS: nats:4222
+      MICRO_TRANSPORT: grpc
       # Define message broker type and its address.
       MICRO_BROKER: nats
       MICRO_BROKER_ADDRESS: nats:4222
@@ -63,8 +62,7 @@ services:
       MICRO_REGISTRY: nats
       MICRO_REGISTRY_ADDRESS: nats:4222
       # Define transport type.
-      MICRO_TRANSPORT: nats
-      MICRO_TRANSPORT_ADDRESS: nats:4222
+      MICRO_TRANSPORT: grpc
       # Define message broker type and its address.
       MICRO_BROKER: nats
       MICRO_BROKER_ADDRESS: nats:4222

@@ -5,7 +5,6 @@ option go_package = "github.com/begmaroman/go-micro-boilerplate/proto/account-sv
 package accountproto;
 
 import "google/protobuf/empty.proto";
-import "google/protobuf/timestamp.proto";
 import "github.com/begmaroman/go-micro-boilerplate/proto/health/health.proto";
 import "github.com/begmaroman/go-micro-boilerplate/proto/status/status.proto";
 
@@ -27,10 +26,8 @@ message CreateUserRequest {
 }
 
 message CreateUserResponse {
-    oneof result {
-        Status error = 1;
-        User user = 2;
-    }
+    optional Status error = 1;
+    optional User user = 2;
 }
 
 // ReadUser operation
@@ -39,10 +36,8 @@ message ReadUserRequest {
 }
 
 message ReadUserResponse {
-    oneof result {
-        Status error = 1;
-        User user = 2;
-    }
+    optional Status error = 1;
+    optional User user = 2;
 }
 
 // ListUsers operation
@@ -53,10 +48,8 @@ message ListUsersResponseOK {
 }
 
 message ListUsersResponse {
-    oneof result {
-        Status error = 1;
-        ListUsersResponseOK data = 2;
-    }
+    optional Status error = 1;
+    optional ListUsersResponseOK data = 2;
 }
 
 // UpdateUserAttributes operation
@@ -66,10 +59,8 @@ message UpdateUserRequest {
 }
 
 message UpdateUserResponse {
-    oneof result {
-        Status error = 1;
-        User user = 2;
-    }
+    optional Status error = 1;
+    optional User user = 2;
 }
 
 // DeleteUser operation
@@ -78,14 +69,11 @@ message DeleteUserRequest {
 }
 
 message DeleteUserResponse {
-    oneof result {
-        Status error = 1;
-        google.protobuf.Empty empty = 2;
-    }
+    optional Status error = 1;
 }
 message User {
     string id = 1;
     string name = 2;
-    google.protobuf.Timestamp updated_at = 3;
-    google.protobuf.Timestamp created_at = 4;
+    uint64 updated_at = 3;
+    uint64 created_at = 4;
 }

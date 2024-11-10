@@ -32,12 +32,11 @@ RUN go mod download
 
 # Install go tools.
 RUN go install \
-  github.com/go-openapi/runtime \
-  github.com/tylerb/graceful \
-  github.com/jessevdk/go-flags \
-  github.com/go-micro/generator/cmd/protoc-gen-micro \
-  google.golang.org/protobuf/cmd/protoc-gen-go \
-  github.com/go-swagger/go-swagger/cmd/swagger
+      github.com/go-micro/generator/cmd/protoc-gen-micro@latest \
+      google.golang.org/protobuf/cmd/protoc-gen-go@latest \
+      github.com/go-openapi/runtime \
+      github.com/jessevdk/go-flags \
+      github.com/go-swagger/go-swagger/cmd/swagger@latest
 
 # Copy the project on build trigger.
 ONBUILD COPY . .

@@ -5,7 +5,7 @@ import (
 	// This type is defined through evars in docker-compose.yaml file.
 	_ "github.com/go-micro/plugins/v4/broker/nats"
 	_ "github.com/go-micro/plugins/v4/registry/nats"
-	_ "github.com/go-micro/plugins/v4/transport/nats"
+	_ "github.com/go-micro/plugins/v4/transport/grpc"
 	"github.com/sirupsen/logrus"
 
 	"github.com/begmaroman/go-micro-boilerplate/services/rest-api-svc/microservice"
