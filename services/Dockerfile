@@ -31,12 +31,11 @@ COPY go.sum .
 RUN go mod download
 
 # Install go tools.
-RUN go install \
-      github.com/go-micro/generator/cmd/protoc-gen-micro@latest \
-      google.golang.org/protobuf/cmd/protoc-gen-go@latest \
-      github.com/go-openapi/runtime \
-      github.com/jessevdk/go-flags \
-      github.com/go-swagger/go-swagger/cmd/swagger@latest
+RUN go install github.com/go-micro/generator/cmd/protoc-gen-micro@latest
+RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+RUN go install github.com/go-openapi/runtime
+RUN go install github.com/jessevdk/go-flags
+RUN go install github.com/go-swagger/go-swagger/cmd/swagger@latest
 
 # Copy the project on build trigger.
 ONBUILD COPY . .
