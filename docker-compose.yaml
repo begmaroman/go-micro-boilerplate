@@ -71,7 +71,7 @@ services:
     restart: always
 
 
-  cvspot-api-spec:
+  api-spec:
     image: swaggerapi/swagger-ui
     ports:
       - "4005:8080"
