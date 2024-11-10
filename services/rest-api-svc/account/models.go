@@ -2,7 +2,6 @@ package account
 
 import (
 	"github.com/go-openapi/strfmt"
-	"github.com/golang/protobuf/ptypes"
 
 	accountproto "github.com/begmaroman/go-micro-boilerplate/proto/account-svc"
 	"github.com/begmaroman/go-micro-boilerplate/services/rest-api-svc/swaggergen/models"
@@ -10,13 +9,20 @@ import (
 
 // toUserModel converts the user proto model to the Swagger model.
 func toUserModel(u *accountproto.User) *models.User {
-	updatedAt, _ := ptypes.Timestamp(u.GetUpdatedAt())
-	createdAt, _ := ptypes.Timestamp(u.GetCreatedAt())
+	var updatedAt strfmt.DateTime
+	if updatedAtRaw := u.GetUpdatedAt(); updatedAtRaw != nil {
+		updatedAt = strfmt.DateTime(u.GetUpdatedAt().AsTime())
+	}
+
+	var createdAt strfmt.DateTime
+	if createdAtRaw := u.GetCreatedAt(); createdAtRaw != nil {
+		createdAt = strfmt.DateTime(u.GetCreatedAt().AsTime())
+	}
 
 	return &models.User{
 		ID:        u.GetId(),
 		Name:      u.GetName(),
-		UpdatedAt: strfmt.DateTime(updatedAt),
-		CreatedAt: strfmt.DateTime(createdAt),
+		UpdatedAt: updatedAt,
+		CreatedAt: createdAt,
 	}
 }

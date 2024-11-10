@@ -1,6 +1,6 @@
 # This is the base image of the services.
 # In this stage we prepare all required common data to dockerize our services.
-FROM golang:1.15
+FROM golang:1.22
 
 RUN apt-get update                                                        && \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
@@ -35,8 +35,8 @@ RUN go install \
   github.com/go-openapi/runtime \
   github.com/tylerb/graceful \
   github.com/jessevdk/go-flags \
-  github.com/micro/protoc-gen-micro/v2 \
-  github.com/golang/protobuf/protoc-gen-go \
+  github.com/go-micro/generator/cmd/protoc-gen-micro \
+  google.golang.org/protobuf/cmd/protoc-gen-go \
   github.com/go-swagger/go-swagger/cmd/swagger
 
 # Copy the project on build trigger.

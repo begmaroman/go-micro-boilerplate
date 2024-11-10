@@ -5,9 +5,9 @@ package accountsvc
 import (
 	"context"
 
-	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
+	"google.golang.org/protobuf/types/known/emptypb"
 
 	accountproto "github.com/begmaroman/go-micro-boilerplate/proto/account-svc"
 	"github.com/begmaroman/go-micro-boilerplate/proto/health"
@@ -163,13 +163,13 @@ func (h *Handler) DeleteUser(ctx context.Context, req *accountproto.DeleteUserRe
 
 	// Prepare RPC response data.
 	resp.Result = &accountproto.DeleteUserResponse_Empty{
-		Empty: &empty.Empty{},
+		Empty: &emptypb.Empty{},
 	}
 	return nil
 }
 
 // Health implements accountproto.AccountServiceHandler interface
-func (h *Handler) Health(ctx context.Context, _ *empty.Empty, res *health.HealthResponse) error {
+func (h *Handler) Health(ctx context.Context, _ *emptypb.Empty, res *health.HealthResponse) error {
 	// Check database
 	if err := h.service.HealthCheck(); err != nil {
 		res.Status = health.HealthResponse_NOT_SERVING
@@ -188,7 +188,7 @@ func (h *Handler) Health(ctx context.Context, _ *empty.Empty, res *health.Health
 
 // Ping implements accountproto.AccountServiceHandler and helath.Pinger interface.
 // This is needed to implement self-pinger functionality.
-func (h *Handler) Ping(ctx context.Context, _ *empty.Empty, _ *empty.Empty) error {
+func (h *Handler) Ping(ctx context.Context, _ *emptypb.Empty, _ *emptypb.Empty) error {
 	return nil
 }
 

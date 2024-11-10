@@ -1,9 +1,9 @@
 package microservice
 
 import (
-	"github.com/micro/go-micro/v2"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
+	micro "go-micro.dev/v4"
 
 	accountproto "github.com/begmaroman/go-micro-boilerplate/proto/account-svc"
 	"github.com/begmaroman/go-micro-boilerplate/proto/health"

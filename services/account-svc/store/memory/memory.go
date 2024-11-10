@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/golang/protobuf/ptypes"
 	"github.com/pborman/uuid"
 	"github.com/sirupsen/logrus"
+	"google.golang.org/protobuf/types/known/timestamppb"
 
 	accountproto "github.com/begmaroman/go-micro-boilerplate/proto/account-svc"
 	"github.com/begmaroman/go-micro-boilerplate/services/account-svc/store"
@@ -48,7 +48,7 @@ func (m *memory) CreateUser(ctx context.Context, input *accountproto.User) (*acc
 	input.Id = uuid.New()
 
 	// Set timestamps
-	now := ptypes.TimestampNow()
+	now := timestamppb.Now()
 	input.CreatedAt = now
 	input.UpdatedAt = now
 
@@ -109,7 +109,7 @@ func (m *memory) UpdateUser(ctx context.Context, id string, input *accountproto.
 	}
 
 	// Update user record.
-	input.UpdatedAt = ptypes.TimestampNow()
+	input.UpdatedAt = timestamppb.Now()
 	m.data[id] = input
 
 	return input, nil

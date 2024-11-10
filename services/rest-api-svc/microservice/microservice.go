@@ -2,10 +2,10 @@ package microservice
 
 import (
 	"github.com/go-openapi/runtime/middleware"
-	"github.com/micro/go-micro/v2/client"
-	"github.com/micro/go-micro/v2/web"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
+	"go-micro.dev/v4/client"
+	"go-micro.dev/v4/web"
 
 	accountproto "github.com/begmaroman/go-micro-boilerplate/proto/account-svc"
 	restapisvc "github.com/begmaroman/go-micro-boilerplate/services/rest-api-svc"
