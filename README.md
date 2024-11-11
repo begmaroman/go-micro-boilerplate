@@ -82,7 +82,7 @@ To run services locally you have to install [docker][docker] and [docker-compose
 
 Once it's done, you have to build the base image:
 ```bash
-$ ./scripts/build-base-image.sh
+$ make build-base-image
 ```
 This is needed to prepare common things for all services to avoid doing the same work multiple times.
 
@@ -104,23 +104,6 @@ This section describes and explains the files and directories structure of the p
 
 Contains protocol buffers models of each service where it exists.
 Your services use protocol buffer messages as the main communication objects.
-
-#### `./scripts` directory
-
-Contains bash scripts. 
-
-You may see `generate.sh` scripts there. This is needed to generate some stuff like 
-GoLang models of proto messages and swagger models.
-To generate these data, execute the following command from the root of the project 
-```bash
-$ ./scripts/generate.sh .
-```
-
-We've prepared docker image as a base image of services.
-To build the base image, you have to execute `build-base-image.sh` script:
-```bash
-$ ./scripts/build-base-image.sh
-```
 
 #### `./services` directory
  
