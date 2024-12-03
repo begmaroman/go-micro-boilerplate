@@ -1,6 +1,6 @@
 # This is the base image of the services.
 # In this stage we prepare all required common data to dockerize our services.
-FROM golang:1.22
+FROM golang:1.23
 
 RUN apt-get update                                                        && \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \

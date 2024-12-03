@@ -1,0 +1,35 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: micro-registry
+  namespace: go-micro
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+    verbs:
+      - get
+      - list
+      - patch
+      - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: micro-registry
+  namespace: go-micro
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: micro-registry
+subjects:
+  - kind: ServiceAccount
+    name: micro-services
+    namespace: go-micro
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  namespace: go-micro
+  name: micro-service

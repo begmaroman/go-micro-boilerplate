@@ -6,19 +6,10 @@ metadata:
   labels:
     app: rest-api-svc
 spec:
+  type: LoadBalancer
   ports:
     - name: rest-api-svc
-      port: 3004
+      port: 80
       targetPort: 5678
   selector:
     app: rest-api-svc
----
-apiVersion: v1
-kind: Endpoints
-metadata:
-  name: rest-api-svc
-subsets:
-  - addresses:
-      - ip: 10.62.176.1
-    ports:
-      - port: 3004

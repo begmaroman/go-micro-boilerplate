@@ -59,6 +59,8 @@ github.com/mailru/easyjson v0.7.7 h1:UGYAvKxe3sBsEDzO8ZeWOSlIQfWFlxbzLZe7hwFURr0
 github.com/mailru/easyjson v0.7.7/go.mod h1:xzfreul335JAWq5oZzymOObrkdz5UnU4kGfJJLY9Nlc=
 github.com/micro/plugins/v5/broker/nats v1.0.2 h1:bkcVygk68eqRrWChHuCj8iwSJ+FDTTMxZsa5XAcfdAY=
 github.com/micro/plugins/v5/broker/nats v1.0.2/go.mod h1:SJrwVScg8EzGeVs4hHTwaJsTIRFjXX5X3xfBw789n9c=
+github.com/micro/plugins/v5/registry/kubernetes v1.0.2 h1:1QQTANhlyKQu0Kn/VDZISEqx+8JgK4MBwcshElI7aXo=
+github.com/micro/plugins/v5/registry/kubernetes v1.0.2/go.mod h1:KS1NRuNuYTPNazV62CWCnetxJ43i1mKpGZrDuam8v6o=
 github.com/micro/plugins/v5/registry/nats v1.0.2 h1:7jukzoaZAvqOa5eWmTCgR3/FCal0p4ZcxOsY8lV7bmw=
 github.com/micro/plugins/v5/registry/nats v1.0.2/go.mod h1:BugSE4Rg1mIUSEQHlzPPN5Te77bX04wPOK+bU2R3dFI=
 github.com/micro/plugins/v5/transport/nats v1.0.2 h1:kBzytrBCU8epfd0PjRfbuZUU6jCqGqHkApYtJPTz6Ok=

@@ -13,41 +13,21 @@ spec:
       labels:
         app: rest-api-svc
     spec:
-      #serviceAccountName: micro-services
+      serviceAccountName: micro-services
       containers:
         - name: rest-api-svc
-          image: go-micro-boilerplate-rest-api-svc:local
-          imagePullPolicy: Never
+          image: 931611839040.dkr.ecr.eu-central-1.amazonaws.com/go-micro-boilerplate/rest-api-svc:latest
           ports:
-            - containerPort: 5678
+            - name: http-port
+              containerPort: 5678
           env:
             - name: MICRO_REGISTRY
-              valueFrom:
-                configMapKeyRef:
-                  name: config
-                  key: MICRO_REGISTRY
-            - name: MICRO_REGISTRY_ADDRESS
-              valueFrom:
-                configMapKeyRef:
-                  name: config
-                  key: MICRO_REGISTRY_ADDRESS
+              value: "kubernetes"
             - name: MICRO_TRANSPORT
-              valueFrom:
-                configMapKeyRef:
-                  name: config
-                  key: MICRO_TRANSPORT
+              value: "nats"
             - name: MICRO_TRANSPORT_ADDRESS
-              valueFrom:
-                configMapKeyRef:
-                  name: config
-                  key: MICRO_TRANSPORT_ADDRESS
+              value: "nats.go-micro.svc.cluster.local:4222"
             - name: MICRO_BROKER
-              valueFrom:
-                configMapKeyRef:
-                  name: config
-                  key: ENVIRONMENT
+              value: "nats"
             - name: MICRO_BROKER_ADDRESS
-              valueFrom:
-                configMapKeyRef:
-                  name: config
-                  key: MICRO_BROKER_ADDRESS
+              value: "nats.go-micro.svc.cluster.local:4222"
