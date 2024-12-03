@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: go-micro
+  name: account-svc
+spec:
+  selector:
+    matchLabels:
+      app: account-svc
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: account-svc
+    spec:
+      #serviceAccountName: micro-services
+      containers:
+        - name: account-svc
+          image: go-micro-boilerplate-account-svc:local
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5678
+          env:
+            - name: MICRO_REGISTRY
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: MICRO_REGISTRY
+            - name: MICRO_REGISTRY_ADDRESS
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: MICRO_REGISTRY_ADDRESS
+            - name: MICRO_TRANSPORT
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: MICRO_TRANSPORT
+            - name: MICRO_TRANSPORT_ADDRESS
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: MICRO_TRANSPORT_ADDRESS
+            - name: MICRO_BROKER
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: ENVIRONMENT
+            - name: MICRO_BROKER_ADDRESS
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: MICRO_BROKER_ADDRESS

@@ -3,9 +3,9 @@ package health
 import (
 	"context"
 
-	micro "go-micro.dev/v4"
-	"go-micro.dev/v4/client"
-	"go-micro.dev/v4/selector"
+	micro "go-micro.dev/v5"
+	"go-micro.dev/v5/client"
+	"go-micro.dev/v5/selector"
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 

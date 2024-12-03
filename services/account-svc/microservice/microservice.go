@@ -3,7 +3,7 @@ package microservice
 import (
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
-	"go-micro.dev/v4"
+	"go-micro.dev/v5"
 
 	accountproto "github.com/begmaroman/go-micro-boilerplate/proto/account-svc"
 	"github.com/begmaroman/go-micro-boilerplate/proto/health"

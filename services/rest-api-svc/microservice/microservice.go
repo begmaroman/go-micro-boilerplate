@@ -4,8 +4,8 @@ import (
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
-	"go-micro.dev/v4/client"
-	"go-micro.dev/v4/web"
+	"go-micro.dev/v5/client"
+	"go-micro.dev/v5/web"
 
 	accountproto "github.com/begmaroman/go-micro-boilerplate/proto/account-svc"
 	restapisvc "github.com/begmaroman/go-micro-boilerplate/services/rest-api-svc"

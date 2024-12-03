@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+  namespace: go-micro
+data:
+  # Define registry type and its address.
+  MICRO_REGISTRY: nats
+  MICRO_REGISTRY_ADDRESS: nats:4222
+  # Define transport type.
+  MICRO_TRANSPORT: nats
+  MICRO_TRANSPORT_ADDRESS: nats:4222
+  # Define message broker type and its address.
+  MICRO_BROKER: nats
+  MICRO_BROKER_ADDRESS: nats:4222

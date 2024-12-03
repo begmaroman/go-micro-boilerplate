@@ -91,7 +91,7 @@ build-account-svc: ## Builds the account-svc binary locally into ./dist
 
 .PHONY: build-base-image
 build-base-image: ## Builds a docker image
-	docker build -f services/Dockerfile -t go-micro-boilerplate-base:latest .
+	docker build --platform linux/amd64 -f services/Dockerfile -t go-micro-boilerplate-base:latest .
 
 .PHONY: install-linter
 install-linter: ## Installs the linter

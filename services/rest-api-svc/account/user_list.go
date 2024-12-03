@@ -1,7 +1,11 @@
 package account
 
 import (
+	"fmt"
 	"net/http"
+	"time"
+
+	"go-micro.dev/v5/client"
 
 	"github.com/begmaroman/go-micro-boilerplate/services/rest-api-svc/swaggergen/models"
 
@@ -15,8 +19,16 @@ import (
 // usersList is the handler of the users listing endpoint.
 // This func calls the users listing endpoint of account-svc.
 func (h *RestHandler) usersList(params operations.UsersListParams) middleware.Responder {
+
+	fmt.Println("request")
+
 	// Call endpoint to list all users.
-	resp, err := h.accountService.ListUsers(params.HTTPRequest.Context(), &accountproto.ListUsersRequest{})
+	resp, err := h.accountService.ListUsers(
+		params.HTTPRequest.Context(),
+		&accountproto.ListUsersRequest{},
+		client.WithRetries(5),
+		client.WithRequestTimeout(time.Second*10),
+	)
 	if err != nil {
 		// Handle the given error and return 500 status code.
 		// Also, write error message into the response.
