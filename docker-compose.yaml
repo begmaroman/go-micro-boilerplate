@@ -38,10 +38,15 @@ services:
       # Define message broker type and its address.
       MICRO_BROKER: nats
       MICRO_BROKER_ADDRESS: nats:4222
+    healthcheck:
+      test: curl --fail http://localhost:5678/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
     networks:
       - go-micro-boilerplate-docker
     restart: always
-
 
   # rest-api-svc configures rest-api-svc to run it locally.
   rest-api-svc:
@@ -66,6 +71,12 @@ services:
       # Define message broker type and its address.
       MICRO_BROKER: nats
       MICRO_BROKER_ADDRESS: nats:4222
+    healthcheck:
+      test: curl --fail http://localhost:5678/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
     networks:
       - go-micro-boilerplate-docker
     restart: always

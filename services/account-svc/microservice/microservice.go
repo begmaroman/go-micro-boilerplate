@@ -1,16 +1,17 @@
 package microservice
 
 import (
-	"github.com/begmaroman/go-micro-boilerplate/utils/healthchecker"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"go-micro.dev/v5"
+	"go-micro.dev/v5/logger"
 
 	accountproto "github.com/begmaroman/go-micro-boilerplate/proto/account-svc"
 	"github.com/begmaroman/go-micro-boilerplate/proto/health"
 	accountsvc "github.com/begmaroman/go-micro-boilerplate/services/account-svc"
 	"github.com/begmaroman/go-micro-boilerplate/services/account-svc/domain"
 	"github.com/begmaroman/go-micro-boilerplate/services/account-svc/store/memory"
+	"github.com/begmaroman/go-micro-boilerplate/utils/healthchecker"
 	"github.com/begmaroman/go-micro-boilerplate/utils/rpc"
 )
 
@@ -31,6 +32,10 @@ func Init(clientOpts *ClientOptions) (*MicroService, error) {
 		micro.BeforeStart(func() error {
 			return opts.Validate()
 		}),
+		micro.Logger(logger.NewLogger(
+			logger.WithLevel(logger.TraceLevel),
+			logger.WithOutput(clientOpts.Log.Writer()),
+		)),
 	)
 
 	// Parse command-line arguments.

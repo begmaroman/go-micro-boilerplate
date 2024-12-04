@@ -1,11 +1,16 @@
 package microservice
 
 import (
+	"net/http"
+
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"go-micro.dev/v5/client"
+	"go-micro.dev/v5/logger"
 	"go-micro.dev/v5/web"
+	"google.golang.org/protobuf/types/known/emptypb"
 
 	accountproto "github.com/begmaroman/go-micro-boilerplate/proto/account-svc"
 	restapisvc "github.com/begmaroman/go-micro-boilerplate/services/rest-api-svc"
@@ -30,6 +35,10 @@ func Init(clientOpts *ClientOptions) (*MicroService, error) {
 		web.BeforeStart(func() error {
 			return opts.Validate()
 		}),
+		web.Logger(logger.NewLogger(
+			logger.WithLevel(logger.TraceLevel),
+			logger.WithOutput(clientOpts.Log.Writer()),
+		)),
 	)
 
 	// Parse command-line arguments.
@@ -56,6 +65,13 @@ func New(svc web.Service, clientOpts *ClientOptions) (*MicroService, error) {
 
 	// Create healthcheck handler. This is needed for LB.
 	restAPI.GetHealthHandler = operations.GetHealthHandlerFunc(func(params operations.GetHealthParams) middleware.Responder {
+		if _, err := accountClient.Ping(params.HTTPRequest.Context(), &emptypb.Empty{}); err != nil {
+			return middleware.ResponderFunc(func(w http.ResponseWriter, _ runtime.Producer) {
+				clientOpts.Log.Errorf("Failed to ping account-svc: %v", err)
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+			})
+		}
+
 		return operations.NewGetHealthOK()
 	})
 

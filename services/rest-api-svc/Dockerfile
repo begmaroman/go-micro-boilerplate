@@ -11,7 +11,7 @@ RUN PLUGINS=${PLUGINS} make build-rest-api-svc
 FROM alpine:3.9
 
 # Install ca-certificates, bash
-RUN apk -v --update add ca-certificates bash
+RUN apk -v --update add ca-certificates bash curl
 
 # Copy entrypoint and service executable.
 COPY ./services/rest-api-svc/entrypoint.sh .

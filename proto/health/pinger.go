@@ -22,13 +22,10 @@ type SelfPingClient struct {
 
 // NewSelfPingClient create a new SelfPingClient
 func NewSelfPingClient(service micro.Service, pinger Pinger) *SelfPingClient {
-	serviceName := service.Server().Options().Name
-	nodeID := service.Server().Options().Id
-
 	return &SelfPingClient{
 		pinger: pinger,
 		selfCallOption: client.WithSelectOption(
-			selector.WithStrategy(SelectNodeByName(serviceName, serviceName+"-"+nodeID)),
+			selector.WithStrategy(SelectNodeByName(service)),
 		),
 	}
 }
