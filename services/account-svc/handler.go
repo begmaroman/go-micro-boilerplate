@@ -9,11 +9,11 @@ import (
 	"github.com/sirupsen/logrus"
 	"google.golang.org/protobuf/types/known/emptypb"
 
+	"github.com/begmaroman/go-micro-boilerplate/pkg/rpc"
 	accountproto "github.com/begmaroman/go-micro-boilerplate/proto/account-svc"
 	"github.com/begmaroman/go-micro-boilerplate/proto/health"
 	proto "github.com/begmaroman/go-micro-boilerplate/proto/status"
 	"github.com/begmaroman/go-micro-boilerplate/services/account-svc/domain"
-	"github.com/begmaroman/go-micro-boilerplate/utils/rpc"
 )
 
 // To make sure Handler implements accountproto.AccountService interface.

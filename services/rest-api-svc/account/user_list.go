@@ -3,12 +3,11 @@ package account
 import (
 	"net/http"
 
-	"github.com/begmaroman/go-micro-boilerplate/services/rest-api-svc/swaggergen/models"
-
-	accountproto "github.com/begmaroman/go-micro-boilerplate/proto/account-svc"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/middleware"
 
+	accountproto "github.com/begmaroman/go-micro-boilerplate/proto/account-svc"
+	"github.com/begmaroman/go-micro-boilerplate/services/rest-api-svc/swaggergen/models"
 	"github.com/begmaroman/go-micro-boilerplate/services/rest-api-svc/swaggergen/restapi/operations"
 )
 

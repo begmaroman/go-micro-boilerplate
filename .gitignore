@@ -18,3 +18,5 @@
 *.generated.go
 *.pb.go
 *.micro.go
+
+.env

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: go-micro
+  name: account-svc
+spec:
+  selector:
+    matchLabels:
+      app: account-svc
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: account-svc
+    spec:
+      serviceAccountName: micro-services
+      containers:
+        - name: account-svc
+          image: 931611839040.dkr.ecr.eu-central-1.amazonaws.com/go-micro-boilerplate/account-svc:latest
+          ports:
+            - name: rpc-port
+              containerPort: 5678
+          env:
+            - name: MICRO_REGISTRY
+              value: "nats"
+            - name: MICRO_REGISTRY_ADDRESS
+              value: "nats.go-micro.svc.cluster.local:4222"
+            - name: MICRO_TRANSPORT
+              value: "nats"
+            - name: MICRO_TRANSPORT_ADDRESS
+              value: "nats.go-micro.svc.cluster.local:4222"
+            - name: MICRO_BROKER
+              value: "nats"
+            - name: MICRO_BROKER_ADDRESS
+              value: "nats.go-micro.svc.cluster.local:4222"

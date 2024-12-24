@@ -1,0 +1,31 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: micro-config
+  namespace: go-micro
+  labels:
+    app: go-micro-config
+rules:
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get", "update", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: micro-config
+  namespace: go-micro
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: micro-config
+subjects:
+  - kind: ServiceAccount
+    name: micro-services
+    namespace: go-micro
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  namespace: go-micro
+  name: micro-services

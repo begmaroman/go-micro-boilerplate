@@ -3,9 +3,9 @@ package health
 import (
 	"context"
 
-	micro "go-micro.dev/v4"
-	"go-micro.dev/v4/client"
-	"go-micro.dev/v4/selector"
+	micro "go-micro.dev/v5"
+	"go-micro.dev/v5/client"
+	"go-micro.dev/v5/selector"
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 
@@ -22,13 +22,10 @@ type SelfPingClient struct {
 
 // NewSelfPingClient create a new SelfPingClient
 func NewSelfPingClient(service micro.Service, pinger Pinger) *SelfPingClient {
-	serviceName := service.Server().Options().Name
-	nodeID := service.Server().Options().Id
-
 	return &SelfPingClient{
 		pinger: pinger,
 		selfCallOption: client.WithSelectOption(
-			selector.WithStrategy(SelectNodeByName(serviceName, serviceName+"-"+nodeID)),
+			selector.WithStrategy(SelectNodeByName(service)),
 		),
 	}
 }

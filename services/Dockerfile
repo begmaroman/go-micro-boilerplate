@@ -1,6 +1,6 @@
 # This is the base image of the services.
 # In this stage we prepare all required common data to dockerize our services.
-FROM golang:1.22
+FROM golang:1.23
 
 RUN apt-get update                                                        && \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
@@ -31,7 +31,7 @@ COPY go.sum .
 RUN go mod download
 
 # Install go tools.
-RUN go install github.com/go-micro/generator/cmd/protoc-gen-micro@latest
+RUN go install github.com/micro/go-micro/cmd/protoc-gen-micro@latest
 RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 RUN go install github.com/go-openapi/runtime
 RUN go install github.com/jessevdk/go-flags

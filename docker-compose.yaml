@@ -1,7 +1,6 @@
 version: '3.5'
 
 services:
-
   # We need the NATS really:
   #  - as the discovery service;
   #  - as the message broker service;
@@ -14,21 +13,20 @@ services:
       - "6222:6222"
     command:
       - "-DV"
+      - "-js"
     networks:
       - go-micro-boilerplate-docker
     restart: always
-
-  #--------------------------------------------------------------------------#
-  # SERVICES DEFINITIONS
-  #--------------------------------------------------------------------------#
 
   # account-svc configures account-svc to run it locally.
   account-svc:
     build:
       context: .
       dockerfile: ./services/account-svc/Dockerfile
+    platform: linux/amd64
     depends_on:
-      - nats
+      nats:
+        condition: service_started
     environment:
       # This is the indicator that the service is running locally.
       DOCKER_COMPOSE: "true"
@@ -36,23 +34,32 @@ services:
       MICRO_REGISTRY: nats
       MICRO_REGISTRY_ADDRESS: nats:4222
       # Define transport type.
-      MICRO_TRANSPORT: grpc
+      MICRO_TRANSPORT: nats
+      MICRO_TRANSPORT_ADDRESS: nats:4222
       # Define message broker type and its address.
       MICRO_BROKER: nats
       MICRO_BROKER_ADDRESS: nats:4222
+    healthcheck:
+      test: curl --fail http://localhost:5678/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
     networks:
       - go-micro-boilerplate-docker
     restart: always
-
 
   # rest-api-svc configures rest-api-svc to run it locally.
   rest-api-svc:
     build:
       context: .
       dockerfile: ./services/rest-api-svc/Dockerfile
+    platform: linux/amd64
     depends_on:
-      - nats
-      - account-svc
+      nats:
+        condition: service_started
+      account-svc:
+        condition: service_healthy
     ports:
       - "3004:5678"
     environment:
@@ -62,14 +69,20 @@ services:
       MICRO_REGISTRY: nats
       MICRO_REGISTRY_ADDRESS: nats:4222
       # Define transport type.
-      MICRO_TRANSPORT: grpc
+      MICRO_TRANSPORT: nats
+      MICRO_TRANSPORT_ADDRESS: nats:4222
       # Define message broker type and its address.
       MICRO_BROKER: nats
       MICRO_BROKER_ADDRESS: nats:4222
+    healthcheck:
+      test: curl --fail http://localhost:5678/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
     networks:
       - go-micro-boilerplate-docker
     restart: always
-
 
   api-spec:
     image: swaggerapi/swagger-ui
@@ -82,5 +95,4 @@ services:
 
 networks:
   go-micro-boilerplate-docker:
-    driver: bridge
     name: go-micro-boilerplate-docker
