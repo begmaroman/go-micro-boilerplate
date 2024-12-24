@@ -14,7 +14,6 @@ require (
 	github.com/go-openapi/validate v0.24.0
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/micro/plugins/v5/broker/nats v1.0.2
-	github.com/micro/plugins/v5/registry/kubernetes v1.0.2
 	github.com/micro/plugins/v5/registry/nats v1.0.2
 	github.com/micro/plugins/v5/transport/nats v1.0.2
 	github.com/pborman/uuid v1.2.0

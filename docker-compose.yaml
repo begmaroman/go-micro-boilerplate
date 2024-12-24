@@ -25,7 +25,8 @@ services:
       dockerfile: ./services/account-svc/Dockerfile
     platform: linux/amd64
     depends_on:
-      - nats
+      nats:
+        condition: service_started
     environment:
       # This is the indicator that the service is running locally.
       DOCKER_COMPOSE: "true"
@@ -55,8 +56,10 @@ services:
       dockerfile: ./services/rest-api-svc/Dockerfile
     platform: linux/amd64
     depends_on:
-      - nats
-      - account-svc
+      nats:
+        condition: service_started
+      account-svc:
+        condition: service_healthy
     ports:
       - "3004:5678"
     environment:

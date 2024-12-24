@@ -7,12 +7,19 @@ import (
 	_ "github.com/micro/plugins/v5/registry/nats"
 	_ "github.com/micro/plugins/v5/transport/nats"
 	"github.com/sirupsen/logrus"
+	"go-micro.dev/v5/selector"
 
 	"github.com/begmaroman/go-micro-boilerplate/services/account-svc/microservice"
+	"github.com/begmaroman/go-micro-boilerplate/utils/rpc"
 )
 
 // Version may be changed during build via --ldflags parameter
 var Version = "latest"
+
+func init() {
+	// Set the default selector strategy to the custom RoundRobin.
+	selector.DefaultSelector = selector.NewSelector(selector.SetStrategy(rpc.Random))
+}
 
 func main() {
 	logger := logrus.New()

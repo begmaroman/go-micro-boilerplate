@@ -2,10 +2,8 @@
 # We use the following command "make build-base-image" to build the base image
 FROM go-micro-boilerplate-base:latest AS builder
 
-ARG PLUGINS=plugins_nats
-
 # Install the service binary.
-RUN PLUGINS=${PLUGINS} make build-rest-api-svc
+RUN make build-rest-api-svc
 
 # Stage 2: Prepare all required data to run the service.
 FROM alpine:3.9

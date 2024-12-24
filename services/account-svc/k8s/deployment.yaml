@@ -22,7 +22,9 @@ spec:
               containerPort: 5678
           env:
             - name: MICRO_REGISTRY
-              value: "kubernetes"
+              value: "nats"
+            - name: MICRO_REGISTRY_ADDRESS
+              value: "nats.go-micro.svc.cluster.local:4222"
             - name: MICRO_TRANSPORT
               value: "nats"
             - name: MICRO_TRANSPORT_ADDRESS

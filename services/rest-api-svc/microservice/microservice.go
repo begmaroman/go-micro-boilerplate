@@ -8,7 +8,6 @@ import (
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"go-micro.dev/v5/client"
-	"go-micro.dev/v5/logger"
 	"go-micro.dev/v5/web"
 	"google.golang.org/protobuf/types/known/emptypb"
 
@@ -35,10 +34,6 @@ func Init(clientOpts *ClientOptions) (*MicroService, error) {
 		web.BeforeStart(func() error {
 			return opts.Validate()
 		}),
-		web.Logger(logger.NewLogger(
-			logger.WithLevel(logger.TraceLevel),
-			logger.WithOutput(clientOpts.Log.Writer()),
-		)),
 	)
 
 	// Parse command-line arguments.
