@@ -11,11 +11,11 @@ import (
 	"go-micro.dev/v5/web"
 	"google.golang.org/protobuf/types/known/emptypb"
 
+	"github.com/begmaroman/go-micro-boilerplate/pkg/rpc"
 	accountproto "github.com/begmaroman/go-micro-boilerplate/proto/account-svc"
 	restapisvc "github.com/begmaroman/go-micro-boilerplate/services/rest-api-svc"
 	"github.com/begmaroman/go-micro-boilerplate/services/rest-api-svc/account"
 	"github.com/begmaroman/go-micro-boilerplate/services/rest-api-svc/swaggergen/restapi/operations"
-	"github.com/begmaroman/go-micro-boilerplate/utils/rpc"
 )
 
 // MicroService is the micro-service.

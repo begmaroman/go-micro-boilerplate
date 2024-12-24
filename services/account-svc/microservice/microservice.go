@@ -6,13 +6,13 @@ import (
 	"go-micro.dev/v5"
 	"go-micro.dev/v5/logger"
 
+	"github.com/begmaroman/go-micro-boilerplate/pkg/healthchecker"
+	"github.com/begmaroman/go-micro-boilerplate/pkg/rpc"
 	accountproto "github.com/begmaroman/go-micro-boilerplate/proto/account-svc"
 	"github.com/begmaroman/go-micro-boilerplate/proto/health"
 	accountsvc "github.com/begmaroman/go-micro-boilerplate/services/account-svc"
 	"github.com/begmaroman/go-micro-boilerplate/services/account-svc/domain"
 	"github.com/begmaroman/go-micro-boilerplate/services/account-svc/store/memory"
-	"github.com/begmaroman/go-micro-boilerplate/utils/healthchecker"
-	"github.com/begmaroman/go-micro-boilerplate/utils/rpc"
 )
 
 // MicroService is the micro-service.

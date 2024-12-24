@@ -9,8 +9,8 @@ import (
 	"github.com/sirupsen/logrus"
 	"go-micro.dev/v5/selector"
 
+	"github.com/begmaroman/go-micro-boilerplate/pkg/rpc"
 	"github.com/begmaroman/go-micro-boilerplate/services/rest-api-svc/microservice"
-	"github.com/begmaroman/go-micro-boilerplate/utils/rpc"
 )
 
 // Version may be changed during build via --ldflags parameter

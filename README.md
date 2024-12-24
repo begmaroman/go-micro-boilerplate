@@ -112,7 +112,7 @@ Contains all services of the project.
 Once you want to create a new service, you may create a new directory with `<service-name>-svc` format.
 Inside of the created directory you can put the logic of your service like it's done with `account-svc`.
  
-#### `./utils` directory
+#### `./pkg` directory
  
 Contains common packages used across the services.
 
